@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Header from "./Header";
 import NavCategory from "./NavCategories";
-import Marquee from "./Marquee";
+
 
 
 
