@@ -15,7 +15,7 @@ const Navbar = async() => {
     // console.log(categories);
 
     return (
-        <div className="mt-5 mb-1 ">
+        <div className="mt-5 mb-0 ">
             <Header></Header>
             
             {/* Navlinks */}
