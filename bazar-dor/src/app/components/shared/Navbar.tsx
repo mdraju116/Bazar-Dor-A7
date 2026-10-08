@@ -1,38 +1,37 @@
-import Link from "next/link";
+import { Suspense } from "react";
 import Header from "./Header";
+import NavCategory from "./NavCategories";
+import Marquee from "./Marquee";
 
-export interface CategoryType{
-    id:string,
-    slug:string,
-    nameBn:string,
-    icon:string
-}
 
-const Navbar = async() => {
 
-    const response =await fetch("https://api.api-store.workers.dev/api/bazardor/categories");
-    const categories:CategoryType[] = await response.json();
-    // console.log(categories);
+const Categories = async () => {
+    const response = await fetch(
+        "https://api.abcz.workers.dev/api/bazardor/categories",
+        {
+            cache: "no-store",
+        }
+    );
 
+    if (!response.ok) {
+        throw new Error(`Categories API error: ${response.status}`);
+    }
+
+    
+
+    const categories = await response.json();
+
+    return <NavCategory categories={categories} />;
+};
+
+const Navbar = () => {
     return (
-        <div className="mt-5 mb-0 ">
-            <Header></Header>
-            
-            {/* Navlinks */}
-            <div className="flex  border border-gray-100 bg-[#ecf8ec] mt-2 p-2 gap-6 shadow-sm  px-38">
-                {
-                    categories.map((category)=>(
-                        <div key={category.id} className="font-bold">
-                            <Link href={"/categor"} >{category.icon} {category.nameBn}</Link>
-                            
-                        </div>
-                        
-                    ))
-                }
-                
-            </div>
+        <div className="mt-4">
+            <Header />
 
-
+            <Suspense fallback={"loading..."}>
+                <Categories />
+            </Suspense>
         </div>
     );
 };

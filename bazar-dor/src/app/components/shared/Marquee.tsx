@@ -2,7 +2,7 @@
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 import Link from "next/link";
-import { ProductType } from "../../types/ProductType";
+import { ProductType } from "@/app/types/ProductType";
 
 
 // API unit → English to Bangla 
@@ -21,14 +21,17 @@ const getBanglaUnit = (unit: string) => {
 // English number → Bangla number
 const toBanglaNumber = (value: number | string) => {
     const banglaDigits = "০১২৩৪৫৬৭৮৯";
-    return String(value).replace( /\d/g, (digit) => banglaDigits[Number(digit)] );
+    return String(value).replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
 };
 
 
 
 
 const Marquee = async () => {
-    const response = await fetch( "https://api.api-store.workers.dev/api/bazardor/products");
+    const response = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+    if (!response.ok) {
+        throw new Error("Failed to fetch products");
+    }
     const products: ProductType[] = await response.json();
 
     return (
