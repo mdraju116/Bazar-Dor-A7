@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono,Hind_Siliguri } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/shared/Navbar";
+import Footer from "./components/shared/Footer";
+import Marquee from "./components/shared/Marquee";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +13,10 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+const hindShiliguri = Hind_Siliguri({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["bengali"],
 });
 
 export const metadata: Metadata = {
@@ -21,9 +28,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${hindShiliguri} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col  bg-[#f0f5f0]">
+
+        <Navbar></Navbar>
+        <Marquee></Marquee>
+
+        <main className="flex-1 container mx-auto px-24 ">
+          {children}
+        </main>
+
+        <Footer></Footer>
+
+
+
+
+      </body>
     </html>
   );
 }
