@@ -1,19 +1,19 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import heroImg from "../../../../assets/bazar-hero.png";
 
 const Banner = () => {
-    const [date] = useState(() => new Date().toLocaleDateString("bn-BD", { dateStyle: "full", }));
-
+    // const [date] = useState(() => new Date().toLocaleDateString("bn-BD", { dateStyle: "full", }));
+    const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
+    
     return (
         <section
             className="
             my-4 flex flex-col items-center justify-between
-            rounded-xl bg-[#fafcfa] px-5 py-2
+            rounded-2xl bg-[#fafcfa] px-5 py-2
             md:flex-row md:gap-2
             "
         >

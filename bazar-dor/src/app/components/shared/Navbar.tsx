@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Header from "./Header";
 import NavCategory from "./NavCategories";
-
+import Marquee from "./Marquee";
 
 
 
@@ -17,7 +17,6 @@ const Categories = async () => {
         throw new Error(`Categories API error: ${response.status}`);
     }
 
-    
 
     const categories = await response.json();
 
@@ -27,11 +26,23 @@ const Categories = async () => {
 const Navbar = () => {
     return (
         <div className="mt-4">
-            <Header />
 
-            <Suspense fallback={"loading..."}>
+            {/* Wraping Header in Suspense to satisfy Next.js prerendering rules,
+            otherwise new Date() is creating error */}
+            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
+                <Header />
+            </Suspense>
+
+            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
                 <Categories />
             </Suspense>
+
+
+            {/* Marquee wrapped in Suspense to handle the async fetch */}
+            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
+                <Marquee />
+            </Suspense>
+
         </div>
     );
 };

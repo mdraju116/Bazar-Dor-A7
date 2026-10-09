@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import Image from "next/image";
 import logo from "../../../../assets/logo-icon.png";
 import UserInfo from "./UserInfo";
 
 const Header = () => {
-    const [date] = useState(() => new Date().toLocaleDateString("bn-BD", { dateStyle: "full", }) );
+    
+    // const [date] = useState(() => new Date().toLocaleDateString("bn-BD", { dateStyle: "full", }) );
+    const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
 
     return (
         <header className="border-b border-gray-100 bg-[#f4f7f5]">
