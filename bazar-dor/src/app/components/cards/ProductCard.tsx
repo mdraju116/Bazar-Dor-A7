@@ -40,7 +40,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link
-      href={`/products-details/${id}`}
+      href={`/product-details/${id}`}
       className="group block h-full rounded-2xl border border-gray-100 bg-[#fafcfa] p-4 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-green-200 hover:shadow-md"
     >
       <div className="flex h-full flex-col justify-between gap-5">

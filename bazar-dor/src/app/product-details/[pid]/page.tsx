@@ -46,8 +46,8 @@ const ProductDetailsPage = async ({params}: ProductDetailsPageProps) => {
         className="mb-4 flex flex-wrap items-center gap-2 text-sm font-semibold"
       >
         <Link href={"/"}><span>হোম</span></Link>
-        {/* <span>/</span> */}
-        {">"}
+        
+        {">"} {/* <span>/</span> */}
        <Link href={"/category-details"}> <span>{product.categoryNameBn}</span></Link>
         {">"}
         <span className="font-medium text-green-700">

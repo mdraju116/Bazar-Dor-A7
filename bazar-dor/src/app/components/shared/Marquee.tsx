@@ -58,25 +58,19 @@ const Marquee = async () => {
                     return (
                         <Link
                             key={product.id}
-                            href={`/product/${product.slug}`}
+                            href={`/product-details/${product.id}`}
                             className="mx-6 inline-flex items-center gap-2 whitespace-nowrap"
                         >
-                            {/* Icon */}
+                          
                             <span className="text-lg"> {product.categoryIcon} </span>
-
-                            {/* Product name */}
-                            <span className="font-semibold text-gray-900"> {product.nameBn}  </span>
-
-                            {/* Price */}
+                            <span className="font-semibold text-gray-900"> {product.nameBn}  </span>              
                             <span className="text-gray-900"> {price} টাকা/{unit}  </span>
 
-                            {/* Change */}
-                            <span className={`font-semibold ${changeColor}`} >
-                                {change}
-                            </span>
+                            <span className={`font-semibold ${changeColor}`} > {change} </span>
 
                             {/* Separator */}
                             <span className="text-gray-300">|</span>
+
                         </Link>
                     );
                 })}
