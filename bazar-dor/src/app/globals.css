@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 
+/*
+main-bg:   bg-[#f0f5f0]
+card-bg : bg-[#fafcfa] 
+btn-bg : bg-[#068a3f]
+
+*/
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -28,7 +28,7 @@ const toBanglaNumber = (value: number | string) => {
 
 
 const Marquee = async () => {
-    const response = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+    const response = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
     if (!response.ok) {
         throw new Error("Failed to fetch products");
     }

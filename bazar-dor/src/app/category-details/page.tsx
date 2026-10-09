@@ -1,9 +1,9 @@
-import React from 'react';
+
 
 const CategoryDetailsPage = () => {
     return (
         <div>
-            
+            single category
         </div>
     );
 };
