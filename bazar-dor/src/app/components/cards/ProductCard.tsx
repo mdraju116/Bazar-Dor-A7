@@ -63,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Today's price */}
         <div className="border-t border-gray-100 pt-4">
-          <p className="mb-2 text-sm font-medium">
+          <p className=" text-sm font-medium">
             আজকের দাম
           </p>
 

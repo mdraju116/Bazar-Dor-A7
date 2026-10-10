@@ -1,8 +1,6 @@
 
 import Link from "next/link";
-import { notFound } from "next/navigation";
-
-import CategoryProductList from "@/app/components/CategoryProductList" 
+import CategoryDetailsProducstList from "@/app/components/shared/CategoryDetailsProducts" 
 import { ProductType } from "@/app/types/ProductType";
 
 interface CategoryDetailsPageProps {
@@ -57,7 +55,7 @@ const CategoryDetailsPage = async ({
   const category = products[0];
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <main className=" min-h-screen w-full   py-6 ">
       {/* Breadcrumb */}
       <nav
         aria-label="Breadcrumb"
@@ -86,17 +84,17 @@ const CategoryDetailsPage = async ({
           </h1>
 
           <p className="mt-1 text-sm text-gray-500">
-            এই বিভাগের পণ্যের আজকের দাম ও পরিবর্তন
+            এই বিভাগের {new Intl.NumberFormat("bn-BD").format(products.length)} টি পণ্যের আজকের দাম ও পরিবর্তন
           </p>
 
-          <p className="mt-2 text-sm font-medium text-green-700">
-            {new Intl.NumberFormat("bn-BD").format(products.length)} টি পণ্য
-          </p>
+          
         </div>
       </section>
 
+
+
       {/* Sort control and product cards */}
-      <CategoryProductList products={products} />
+      <CategoryDetailsProducstList products={products} />
     </main>
   );
 };

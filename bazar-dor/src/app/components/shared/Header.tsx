@@ -3,7 +3,7 @@
 // import { useState } from "react";
 import Image from "next/image";
 import logo from "../../../../assets/logo-icon.png";
-import UserInfo from "./UserInfo";
+import UserInfo from "../../(auth)/UserInfo";
 import Link from "next/link";
 
 const Header = () => {
