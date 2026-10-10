@@ -13,7 +13,7 @@ const CategoryDetailsPage = async ({
   const { cslug } = await params;
 
   const response = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${encodeURIComponent(cslug)}`,
+    `https://api.abcz.workers.dev/api/bazardor/products?category=${encodeURIComponent(cslug)}`,
     {
       cache: "no-store",
     }

@@ -302,7 +302,7 @@ const SignUpPage = () => {
 
 
 
-        {/* Back to home */}
+      {/* Back to home */}
       <Link
         href="/"
         className="mt-5 flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-green-700"

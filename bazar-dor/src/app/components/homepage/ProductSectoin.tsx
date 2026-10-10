@@ -4,7 +4,7 @@ import ProductCard from "../cards/ProductCard";
 
 const ProductSection = async () => {
   const response = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://api.abcz.workers.dev/api/bazardor/products",
     { cache: "no-store" }
   );
 

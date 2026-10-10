@@ -42,7 +42,7 @@ const SignInPage = () => {
         email,
         password: submittedPassword,
         rememberMe: true,
-        callbackURL: "/profile-info",
+        callbackURL: "/",
       });
 
       if (error) {
@@ -53,7 +53,7 @@ const SignInPage = () => {
       toast.success("সফলভাবে সাইন ইন হয়েছে!");
 
       // Redirect after successful sign-in
-      router.push("/profile-info");
+      router.push("/");
 
       console.log("Sign-in successful:", data);
     } catch (error) {
@@ -69,7 +69,7 @@ const SignInPage = () => {
     try {
       const { error } = await signIn.social({
         provider: "google",
-        callbackURL: "/profile-info",
+        callbackURL: "/",
       });
 
       if (error) {
@@ -86,7 +86,7 @@ const SignInPage = () => {
     try {
       const { error } = await signIn.social({
         provider: "github",
-        callbackURL: "/profile-info",
+        callbackURL: "/",
       });
 
       if (error) {
@@ -256,7 +256,7 @@ const SignInPage = () => {
         <IoMdArrowBack className="size-4" />
         হোম পেজে ফিরে যান
       </Link>
-      
+
     </div>
   );
 };
