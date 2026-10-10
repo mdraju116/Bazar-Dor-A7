@@ -5,20 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  updateUser,
-  signOut,
-  useSession,
-} from "@/lib/auth-client";
-import {
-  Button,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  TextField,
-  Spinner,
-} from "@heroui/react";
+import { updateUser,signOut,useSession,} from "@/lib/auth-client";
+import { Button, FieldError,Form,Input,Label,TextField,Spinner,} from "@heroui/react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -47,18 +35,16 @@ const ProfileInfoPage = () => {
 
     try {
       setIsUpdating(true);
-
       const { error } = await updateUser({ name });
-
       if (error) {
         toast.error(error.message || "তথ্য আপডেট করা যায়নি");
         return;
       }
-
       toast.success("প্রোফাইল সফলভাবে আপডেট হয়েছে!");
 
       // Refresh session-dependent UI
       router.refresh();
+
     } catch (error) {
       console.error("Profile update error:", error);
       toast.error("একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
@@ -67,23 +53,22 @@ const ProfileInfoPage = () => {
     }
   };
 
+
   // Sign out
   const handleSignOut = async () => {
     if (isSigningOut) return;
 
     try {
       setIsSigningOut(true);
-
       const { error } = await signOut();
-
       if (error) {
         toast.error(error.message || "সাইন আউট করা যায়নি");
         return;
       }
-
       toast.success("সফলভাবে সাইন আউট হয়েছে!");
       router.push("/");
       router.refresh();
+
     } catch (error) {
       console.error("Sign-out error:", error);
       toast.error("সাইন আউট করার সময় সমস্যা হয়েছে");
@@ -91,6 +76,7 @@ const ProfileInfoPage = () => {
       setIsSigningOut(false);
     }
   };
+
 
   // Loading session
   if (isPending) {
@@ -108,7 +94,7 @@ const ProfileInfoPage = () => {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
-        <h1 className="text-xl font-bold text-gray-800">
+        <h1 className="text-xl font-bold text-gray-800 ">
           আপনার অ্যাকাউন্টে সাইন ইন করুন
         </h1>
 
@@ -129,7 +115,7 @@ const ProfileInfoPage = () => {
   return (
     <main className="mx-auto  max-w-2xl px-4 py-8 sm:py-12">
       {/* Page heading */}
-      <div className="mb-3">
+      <div className="mb-3 ">
         <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
           আমার প্রোফাইল
         </h1>

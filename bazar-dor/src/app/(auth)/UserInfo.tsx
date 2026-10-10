@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { signOut, useSession } from "@/lib/auth-client";
-import { Spinner } from "@heroui/react";
+import { Spinner,Button } from "@heroui/react";
 import { FaUser } from "react-icons/fa";
 import { MdArrowDropDown } from "react-icons/md";
 
@@ -101,9 +101,8 @@ const UserInfo = () => {
             </span>
 
             <MdArrowDropDown
-              className={`text-2xl text-gray-600 transition-transform duration-200 ${
-                isDropdownOpen ? "rotate-180" : ""
-              }`}
+              className={`text-2xl text-gray-600 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -142,20 +141,20 @@ const UserInfo = () => {
               <Link
                 href="/profile-info"
                 onClick={() => setIsDropdownOpen(false)}
-                className="mt-2 block rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-green-50 hover:text-[#068a3f]"
+                className="mt-2 block rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-green-50 hover:text-[#068a3f] text-center"
               >
                 প্রোফাইল দেখুন
               </Link>
 
               {/* Sign out */}
-              <button
+              <Button
                 type="button"
-                onClick={handleSignOut}
-                disabled={isSigningOut}
-                className="mt-1 w-full rounded-lg bg-[#068a3f] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60"
+                onPress={handleSignOut}
+                isDisabled={isSigningOut}
+                className="w-full rounded border border-red-500 px-3 py-2 text-sm font-semibold text-red-400 bg-white hover:bg-gray-200 "
               >
                 {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
-              </button>
+              </Button>
             </div>
           )}
         </>

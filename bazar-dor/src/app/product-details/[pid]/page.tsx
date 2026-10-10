@@ -19,7 +19,7 @@ const ProductDetailsPage = async ({params}: ProductDetailsPageProps) => {
 
   try {
     const response = await fetch(
-      `https://api.api-store.workers.dev/api/bazardor/products/${pid}`,
+      `https://api.abcz.workers.dev/api/bazardor/products/${pid}`,
       {
         cache: "no-store",
       }
