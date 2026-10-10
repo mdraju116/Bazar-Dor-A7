@@ -22,9 +22,13 @@ const SignUpPage = () => {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
 
     // Final password match check
     if (password !== confirmPassword) {
@@ -32,33 +36,38 @@ const SignUpPage = () => {
       return;
     }
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    setIsSubmitting(true);
 
-    // console.log("Data from the form:", data);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData.entries());
 
-    //send data to mongodb
-    const { data: responseData, error } = await signUp.email({
-      name: String(data.name ?? ""),
-      email: String(data.email ?? ""),
-      password: String(data.password ?? ""),
+      // Send data to MongoDB through Better Auth
+      const { data: responseData, error } = await signUp.email({
+        name: String(data.name ?? ""),
+        email: String(data.email ?? ""),
+        password: String(data.password ?? ""),
+      });
 
-      //callbackURL: "/sign-in"   //not working ,that's why using router
-      //redirectTo: "/sign-in",   //
-    });
+      if (error) {
+        console.error("Sign-up error:", error);
+        toast.error(error.message || "সাইন আপ করা যায়নি!");
+        return;
+      }
 
+      toast.success("Successfully Signed Up.");
+      console.log("After signed-up:", responseData);
 
-    if (error) {
-      console.log(error);
-      toast.error(`Error: ${error}`);
-      return;
+      router.push("/sign-in");
+    } catch (error) {
+      console.error("Unexpected sign-up error:", error);
+
+      toast.error("সাইন আপ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+    } finally {
+      setIsSubmitting(false);
     }
-    toast.success("Successfully Signed Up.");
-    router.push("/sign-in"); //to move from sign-up page
-    console.log("After signed-up", responseData, error);
-
-
   };
+
 
   const handleGoogleSignIn = async () => {
     const { error } = await signIn.social({
@@ -254,11 +263,14 @@ const SignUpPage = () => {
 
         {/* Submit */}
         <div className="flex w-full justify-center">
-          <Button type="submit" className="w-full bg-[#068a3f] text-white font-semibold">
-            সাইন আপ করুন
+          <Button
+            type="submit"
+            isDisabled={isSubmitting}
+            className="w-full bg-[#068a3f] font-semibold text-white"
+          >
+            {isSubmitting ? "সাইন আপ হচ্ছে..." : "সাইন আপ করুন"}
           </Button>
         </div>
-
 
         {/* Divider */}
         <div className="flex w-full items-center gap-3">
@@ -311,7 +323,7 @@ const SignUpPage = () => {
         হোম পেজে ফিরে যান
       </Link>
 
-     
+
 
     </div>
   );

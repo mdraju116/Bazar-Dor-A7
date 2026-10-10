@@ -4,11 +4,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-import { updateUser,signOut,useSession,} from "@/lib/auth-client";
-import { Button, FieldError,Form,Input,Label,TextField,Spinner,} from "@heroui/react";
+import { updateUser, signOut, useSession, } from "@/lib/auth-client";
+import { Button, FieldError, Form, Input, Label, TextField, Spinner, } from "@heroui/react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { BsArrowReturnLeft } from "react-icons/bs";
 
 const ProfileInfoPage = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const ProfileInfoPage = () => {
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const user = session?.user;
-
+ 
   // Update profile name
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,27 +90,18 @@ const ProfileInfoPage = () => {
     );
   }
 
-  // Protect page from signed-out users
-  if (!user) {
+// protecting signed-out users ( for Internal issue)
+ if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
-        <h1 className="text-xl font-bold text-gray-800 ">
-          আপনার অ্যাকাউন্টে সাইন ইন করুন
-        </h1>
-
+      <div className="flex  items-center justify-center px-4 py-16 text-center">
         <p className="mt-2 text-sm text-gray-500">
           প্রোফাইল দেখতে প্রথমে সাইন ইন করতে হবে।
         </p>
-
-        <Link
-          href="/sign-in"
-          className="mt-5 rounded-xl bg-[#068a3f] px-5 py-2.5 font-semibold text-white transition hover:bg-green-700"
-        >
-          সাইন ইন করুন
-        </Link>
       </div>
-    );
+    )
   }
+
+
 
   return (
     <main className="mx-auto  max-w-2xl px-4 py-8 sm:py-12">
@@ -165,7 +156,7 @@ const ProfileInfoPage = () => {
           isDisabled={isSigningOut}
           className="rounded border border-red-500 px-3 py-2 text-sm font-semibold text-red-400 bg-white hover:bg-gray-200 "
         >
-          {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
+          <BsArrowReturnLeft /> {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
         </Button>
       </section>
 

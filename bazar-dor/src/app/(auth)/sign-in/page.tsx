@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Button, FieldError, Form, Input, InputGroup, Label, TextField,} from "@heroui/react";
+import { Button, FieldError, Form, Input, InputGroup, Label, TextField, } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -12,12 +12,26 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
 
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+
+
 const SignInPage = () => {
   const router = useRouter();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  //proxy-message
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("message") === "login-required") {
+      toast.info("এই তথ্য দেখতে প্রথমে সাইন ইন করতে হবে।", {
+        toastId: "login-required",
+      });
+    }
+  }, [searchParams]);
 
   // Email and password sign-in
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -137,7 +151,7 @@ const SignInPage = () => {
           <Input
             className="w-full"
             type="email"
-            // placeholder="আপনার ইমেইল লিখুন"
+          // placeholder="আপনার ইমেইল লিখুন"
           />
 
           <FieldError />
@@ -163,7 +177,7 @@ const SignInPage = () => {
               className="w-full"
               name="password"
               type={isPasswordVisible ? "text" : "password"}
-            //   placeholder="আপনার পাসওয়ার্ড লিখুন"
+              //   placeholder="আপনার পাসওয়ার্ড লিখুন"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

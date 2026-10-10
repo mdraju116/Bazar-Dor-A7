@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Hind_Siliguri } from "next/font/google";
+import { Geist, Geist_Mono, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
@@ -32,8 +32,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col  bg-[#f0f5f0]">
 
-        <Navbar/>
-        
+        <Navbar />
+
 
         <main className="flex-1 container mx-auto px-24 ">
           {children}
@@ -41,8 +41,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <Footer></Footer>
 
-<ToastContainer autoClose={2000} 
-			position="top-right"/>
+        <ToastContainer autoClose={2000}
+          position="bottom-right" />
 
 
       </body>

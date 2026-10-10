@@ -9,6 +9,7 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { Spinner,Button } from "@heroui/react";
 import { FaUser } from "react-icons/fa";
 import { MdArrowDropDown } from "react-icons/md";
+import { BsArrowReturnLeft } from "react-icons/bs";
 
 const UserInfo = () => {
   const { data: session, isPending } = useSession();
@@ -153,7 +154,7 @@ const UserInfo = () => {
                 isDisabled={isSigningOut}
                 className="w-full rounded border border-red-500 px-3 py-2 text-sm font-semibold text-red-400 bg-white hover:bg-gray-200 "
               >
-                {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
+                <BsArrowReturnLeft />{isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
               </Button>
             </div>
           )}
