@@ -28,7 +28,7 @@ const SignUpPage = () => {
 
     // Final password match check
     if (password !== confirmPassword) {
-      toast.error("দুটি পাসওয়ার্ড মিলছে না!");
+      toast.error("পাসওয়ার্ড মিলছে না!");
       return;
     }
 
@@ -302,11 +302,14 @@ const SignUpPage = () => {
 
 
 
-        <div className="flex items-center gap-2 mt-4 text-sm" >
-          <Link href={"/"} className="transition-colors hover:text-green-700" ><IoMdArrowBack /> </Link>
-          <h1 className=" text-gray-600 ">হোম পেজে ফিরে যান</h1>
-
-        </div>
+        {/* Back to home */}
+      <Link
+        href="/"
+        className="mt-5 flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-green-700"
+      >
+        <IoMdArrowBack className="size-4" />
+        হোম পেজে ফিরে যান
+      </Link>
 
      
 
