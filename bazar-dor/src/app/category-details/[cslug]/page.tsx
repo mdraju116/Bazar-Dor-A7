@@ -1,7 +1,8 @@
 
 import Link from "next/link";
-import CategoryDetailsProducstList from "@/app/components/shared/CategoryDetailsProducts" 
+import CategoryDetailsProducstList from "@/app/components/shared/CategoryDetailsProducts"
 import { ProductType } from "@/app/types/ProductType";
+import { notFound } from "next/navigation";
 
 interface CategoryDetailsPageProps {
   params: Promise<{ cslug: string }>;
@@ -20,9 +21,11 @@ const CategoryDetailsPage = async ({
   );
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     throw new Error("Failed to fetch category products");
   }
-
   const products: ProductType[] = await response.json();
 
   // Empty state for invalid or empty categories
@@ -87,7 +90,7 @@ const CategoryDetailsPage = async ({
             এই বিভাগের {new Intl.NumberFormat("bn-BD").format(products.length)} টি পণ্যের আজকের দাম ও পরিবর্তন
           </p>
 
-          
+
         </div>
       </section>
 

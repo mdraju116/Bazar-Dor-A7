@@ -48,7 +48,7 @@ const ProductDetailsPage = async ({params}: ProductDetailsPageProps) => {
         <Link href={"/"}><span>হোম</span></Link>
         
         {">"} {/* <span>/</span> */}
-       <Link href={"/category-details"}> <span>{product.categoryNameBn}</span></Link>
+        <Link href={`/category-details/${product.category}`}> <span>{product.categoryNameBn}</span></Link>
         {">"}
         <span className="font-medium text-green-700">
           {product.nameBn}

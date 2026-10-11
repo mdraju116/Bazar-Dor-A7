@@ -152,7 +152,7 @@ const Banner = () => {
 
                     {!isPending && isLoggedIn && (
                         <Link
-                            href="/market-comparison"
+                            href="#সব-পণ্য"
                             className="
                             inline-flex items-center justify-center
                             rounded-xl border border-[#068a3f]

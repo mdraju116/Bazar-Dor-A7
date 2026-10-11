@@ -2,49 +2,52 @@ import { Suspense } from "react";
 import Header from "./Header";
 import NavCategory from "./NavCategories";
 import Marquee from "./Marquee";
+import NavbarSkeleton from "./NavbarSkeleton";
 
 
 
 const Categories = async () => {
+  let categories = [];
+
+  try {
     const response = await fetch(
-        "https://openapi.programming-hero.com/api/bazardor/categories",
-        {
-            cache: "no-store",
-        }
+      "https://api.api-store.workers.dev/api/bazardor/categories",
+      { next: { revalidate: 3600 } }
     );
 
-    if (!response.ok) {
-        throw new Error(`Categories API error: ${response.status}`);
+    if (response.ok) {
+      categories = await response.json();
     }
 
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
+  }
 
-    const categories = await response.json();
-
-    return <NavCategory categories={categories} />;
+  return <NavCategory categories={categories} />;
 };
 
+
 const Navbar = () => {
-    return (
-        <div className="mt-4">
+  return (
+    <div className=" mt-4 w-full   ">
 
-            {/* Wraping Header in Suspense to satisfy Next.js prerendering rules,
-            otherwise new Date() is creating error */}
-            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
-                <Header />
-            </Suspense>
-
-            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
-                <Categories />
-            </Suspense>
+      {/* Wraping Header in Suspense to satisfy Next.js prerendering rules, otherwise new Date() is creating error */}
+      
+        <Suspense fallback={<NavbarSkeleton variant="header" />}>
+          <Header />
+        </Suspense>
 
 
-            {/* Marquee wrapped in Suspense to handle the async fetch */}
-            <Suspense fallback={ <div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
-                <Marquee />
-            </Suspense>
+      <Suspense fallback={<NavbarSkeleton variant="categories" />}>
+        <Categories />
+      </Suspense>
 
-        </div>
-    );
+      {/* Marquee wrapped in Suspense to handle the async fetch */}
+      <Suspense fallback={<NavbarSkeleton variant="marquee" />}>
+        <Marquee />
+      </Suspense>
+    </div>
+  );
 };
 
 export default Navbar;

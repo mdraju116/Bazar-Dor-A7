@@ -12,9 +12,9 @@ const Header = () => {
     const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
 
     return (
-        <header className="border-b border-gray-100 bg-[#f4f7f5]">
-            <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-24">
-                
+        <header className=" w-full border-b border-gray-100 bg-[#f4f7f5]">
+            <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+
                 <Link href={"/"}>
                     {/* Logo + Date */}
                     <div className="flex items-center gap-3">

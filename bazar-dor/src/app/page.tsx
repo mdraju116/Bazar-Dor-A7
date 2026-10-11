@@ -1,28 +1,25 @@
 
-import Banner from "./components/homepage/Banner";
-// import DecreasedPrice from "./components/homepage/DecreasedPrice";
-// import IncreasedPrice from "./components/homepage/IncreasedPrice";
-// import AllProducts from "./components/homepage/AllProducts";
-import ProductSectoin from "./components/homepage/ProductSectoin";
 import { Suspense } from "react";
+
+import Banner from "./components/homepage/Banner";
+import ProductSectoin from "./components/homepage/ProductSectoin";
+
+import BannerSkeleton from "./components/homepage/BannerSkeleton";
+import ProductSectionSkeleton from "./components/shared/ProductSectionSkeleton";
 
 export default function Home() {
   return (
     <div>
       {/* Wrap Banner in Suspense to satisfy Next.js prerendering rules */}
-      <Suspense fallback={<div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
+      {/* Banner loading skeleton */}
+      <Suspense fallback={<BannerSkeleton />}>
         <Banner />
       </Suspense>
 
-      <Suspense fallback={<div className="h-10 bg-gray-50 text-center" >Loading data... </div>} >
+      {/* Product sections loading skeleton */}
+      <Suspense fallback={<ProductSectionSkeleton />}>
         <ProductSectoin />
       </Suspense>
-
-
-      {/* <IncreasedPrice/>
-        <DecreasedPrice/>
-        <AllProducts/> */}
-
     </div>
   );
 }

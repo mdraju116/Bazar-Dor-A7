@@ -17,3 +17,31 @@ btn-bg : bg-[#068a3f]
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+
+/* Mobile category marquee */
+/* 
+@keyframes category-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.category-marquee {
+  width: max-content;
+  animation: category-scroll 25s linear infinite;
+}
+
+.category-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-marquee {
+    animation: none;
+  }
+} */
