@@ -97,6 +97,7 @@ Bazar-Dor/
 │   ├── auth.ts
 │   └── auth-client.ts
 │
+│── proxy.ts
 ├── public/
 ├── assets/
 ├── package.json
@@ -148,4 +149,4 @@ The application uses environment variables to configure authentication providers
 **Md. Raju Ahammed**
 
 - GitHub: [mdraju116](https://github.com/mdraju116)
-- Live Demo: [Bazar Dor](https://bazar-dor-a7-one.vercel.app/)
+
