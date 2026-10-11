@@ -6,6 +6,9 @@ const client = new MongoClient(process.env.MONGODB_URI!);
 const db = client.db("bazar-dor-db1");
 
 export const auth = betterAuth({
+    baseURL: process.env.BETTER_AUTH_URL,
+    secret: process.env.BETTER_AUTH_SECRET,
+
     emailAndPassword: {
         enabled: true,
         autoSignIn: false,
